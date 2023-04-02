@@ -46,10 +46,7 @@ def number_password_combinations(password: str) -> int:
 
 
 def password_bit_depth(password: str) -> int:
-    alphabet_length = number_password_combinations(password)
-    length = len(password)
-
-    return int(math.log2(alphabet_length ** length))
+    return int(math.log2(bruteforce_combinations(password)))
 
 
 def password_complexity_reliability(password_bit: int) -> str:
@@ -73,3 +70,19 @@ def password_strength_percentage(password_bit: int) -> int:
         return 100
     else:
         return password_bit
+
+
+def bruteforce_combinations(password: str) -> int:
+    return number_password_combinations(password) ** len(password)
+
+
+def bring_normal(password: str, num_unchan_posit: int) -> str:
+    bruteforce_combination = str(bruteforce_combinations(password))
+
+    if len(bruteforce_combination) < num_unchan_posit:
+        bring_normal_species = bruteforce_combination
+    else:
+        bring_normal_species = f'{bruteforce_combination[:num_unchan_posit]} · ' \
+                               f'10^{len(bruteforce_combination[num_unchan_posit:])}'
+
+    return bring_normal_species
