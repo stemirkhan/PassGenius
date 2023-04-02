@@ -66,3 +66,10 @@ def password_complexity_reliability(password_bit: int) -> str:
         reliability = 'высокая'
 
     return reliability
+
+
+def password_strength_percentage(password_bit: int) -> int:
+    if password_bit >= 100:
+        return 100
+    else:
+        return password_bit
