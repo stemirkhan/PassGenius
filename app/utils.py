@@ -42,6 +42,12 @@ def number_password_combinations(password: str) -> int:
     if re.search(r'(?:[^\w\s]|_)+', password):
         alphabet_length += 32
 
+    if re.search(r'[а-я]', password):
+        alphabet_length += 33
+
+    if re.search(r'[А-Я]', password):
+        alphabet_length += 33
+
     return alphabet_length
 
 
