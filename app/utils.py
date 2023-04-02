@@ -43,3 +43,10 @@ def number_password_combinations(password: str) -> int:
         alphabet_length += 32
 
     return alphabet_length
+
+
+def password_bit_depth(password: str) -> int:
+    alphabet_length = number_password_combinations(password)
+    length = len(password)
+
+    return int(math.log2(alphabet_length ** length))
