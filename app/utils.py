@@ -9,7 +9,6 @@ def password_generation(size_password: int,
                         flag_lower_let: bool,
                         flag_upper_let: bool,
                         flag_spec_char: bool) -> str:
-
     characters_generate = ''
 
     if flag_numbers or flag_lower_let or flag_upper_let or flag_spec_char:
@@ -27,3 +26,20 @@ def password_generation(size_password: int,
     password = ''.join([random.choice(characters_generate) for _ in range(size_password)])
 
     return password
+
+
+def number_password_combinations(password: str) -> int:
+    alphabet_length = 0
+    if re.search('[0-9]', password):
+        alphabet_length += 10
+
+    if re.search('[a-z]', password):
+        alphabet_length += 26
+
+    if re.search('[A-Z]', password):
+        alphabet_length += 26
+
+    if re.search(r'(?:[^\w\s]|_)+', password):
+        alphabet_length += 32
+
+    return alphabet_length
