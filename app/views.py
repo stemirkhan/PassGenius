@@ -1,7 +1,7 @@
 from app import app
 from flask import render_template
 from .utils import *
-from .forms import GenerateForm
+from .forms import GenerateForm, PasswordVerificationForm
 
 
 @app.route('/', methods=['GET', 'POST'])
@@ -21,4 +21,25 @@ def generate_password():
     return render_template('generate_password.html',
                            title='Сгенерировать',
                            passwords=passwords,
+
+                           form=form)
+
+
+@app.route('/check_password', methods=['GET', 'POST'])
+def check_password():
+    form = PasswordVerificationForm()
+    reliability_percentage = 0
+    reliability = ''
+    bruteforce_combination = 0
+    if form.validate_on_submit():
+        password_bit = password_bit_depth(form.input_password.data)
+        reliability_percentage = password_strength_percentage(password_bit)
+        reliability = password_complexity_reliability(password_bit)
+        bruteforce_combination = bring_normal(form.input_password.data, 5)
+
+    return render_template('check_password.html',
+                           title='Проверить надежность',
+                           reliability_percentage=reliability_percentage,
+                           reliability=reliability,
+                           bruteforce_combination=bruteforce_combination,
                            form=form)
