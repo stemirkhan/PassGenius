@@ -50,3 +50,19 @@ def password_bit_depth(password: str) -> int:
     length = len(password)
 
     return int(math.log2(alphabet_length ** length))
+
+
+def password_complexity_reliability(password_bit: int) -> str:
+    if password_bit < 40:
+        reliability = 'очень слабая'
+
+    elif password_bit < 60:
+        reliability = 'слабая'
+
+    elif password_bit < 80:
+        reliability = 'средняя'
+
+    else:
+        reliability = 'высокая'
+
+    return reliability
