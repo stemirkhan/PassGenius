@@ -10,8 +10,8 @@ class GenerateForm(FlaskForm):
     spec_char = BooleanField('Спец. символы')
     submit = SubmitField("СГЕНЕРИРОВАТЬ")
     input_size = StringField(validators=[
-        Regexp(r'^(30|[1-2]?[1-9])$', message='Значение поля должно быть числом от 1 до 30'),
-        Length(min=1, max=2)])
+        Regexp(r'^(100|[1-9]?[0-9])$', message='Значение поля от 1 до 100'),
+        Length(min=1, max=3)])
 
 
 class PasswordVerificationForm(FlaskForm):
