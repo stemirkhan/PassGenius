@@ -85,7 +85,7 @@ def bruteforce_combinations(password: str) -> int:
 def bring_normal(password: str, num_unchan_posit: int) -> str:
     bruteforce_combination = str(bruteforce_combinations(password))
 
-    if len(bruteforce_combination) < num_unchan_posit:
+    if len(bruteforce_combination) <= num_unchan_posit:
         bring_normal_species = bruteforce_combination
     else:
         bring_normal_species = f'{bruteforce_combination[:num_unchan_posit]} · ' \
