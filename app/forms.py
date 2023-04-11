@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from wtforms import BooleanField, SubmitField, StringField
-from wtforms.validators import Length, Regexp, ValidationError, DataRequired
+from wtforms.validators import Length, Regexp, DataRequired
 
 
 class GenerateForm(FlaskForm):
@@ -15,5 +15,7 @@ class GenerateForm(FlaskForm):
 
 
 class PasswordVerificationForm(FlaskForm):
-    input_password = StringField(validators=[Length(min=1, max=100), DataRequired()])
     submit = SubmitField("ПРОВЕРИТЬ")
+    input_password = StringField(validators=[
+        Regexp(r'^[А-я]|[0-9]|[A-z]|[ء-ي]|(?:[^\w\s]|_)$', message='Пароль содержит не известные символы'),
+        Length(min=1, max=100), DataRequired()])
