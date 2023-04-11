@@ -1,6 +1,6 @@
 from app import app
 from flask import render_template
-from .func_password import get_passwords_generation, check_password
+from .func_password import get_passwords_generation, check_password_func
 from .forms import GenerateForm, PasswordVerificationForm
 
 
@@ -25,7 +25,7 @@ def check_password():
     reliab_percent, reliab, bruteforce_combination = 0, '', 0
 
     if form.validate_on_submit():
-        reliab_percent, reliab, bruteforce_combination = check_password(form.input_password.data)
+        reliab_percent, reliab, bruteforce_combination = check_password_func(form.input_password.data)
 
     return render_template('check_password.html',
                            title='Проверить надежность',

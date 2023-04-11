@@ -1,5 +1,5 @@
 import pytest
-from app.utils import *
+from app.func_password import *
 
 
 @pytest.mark.parametrize('size_password', [_ for _ in range(1, 100)])
@@ -33,7 +33,7 @@ def test_flag_password_generation(flag_numbers, flag_lower_let, flag_upper_let, 
                                               ('A', 26), ('+', 32), ('1a+', 68),
                                               ('Ъ', 33), ('ъ', 33), ('1a+Ъ', 101)])
 def test_number_password_combinations(password, result):
-    assert number_password_combinations(password) == result
+    assert password_alphabet_length(password) == result
 
 
 @pytest.mark.parametrize('password, result', [('1', 3), ('a', 4), ('1a', 10),

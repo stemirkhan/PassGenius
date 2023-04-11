@@ -51,7 +51,7 @@ def get_alphabet_genpassword(flag_numbers: bool,
 #         Start function used to password check          #
 ##########################################################
 
-def check_password(password: str) -> tuple:
+def check_password_func(password: str) -> tuple:
     bruteforce_combination = bruteforce_combinations(password)
     password_bit = password_bit_depth(bruteforce_combination)
     reliab_percent = password_strength_percentage(password_bit)
