@@ -1,4 +1,5 @@
 import pytest
+import string
 from bs4 import BeautifulSoup
 
 
@@ -22,10 +23,30 @@ def test_validation_error_pagegen(client, input_size):
     assert str(title) == '<p class="invalid_messages">Значение поля от 1 до 100</p>'
 
 
-@pytest.mark.parametrize('input_password', ['ي', 'D', 'f', '/', 'Ъ', 'ь'])
-def test_input_page_check(client, input_password):
+@pytest.mark.parametrize('input_password',
+                         [_ for _ in string.ascii_lowercase] +
+                         [_ for _ in string.ascii_uppercase] +
+                         [_ for _ in string.digits] +
+                         [chr(_) for _ in range(ord('а'), ord('я'))] +
+                         [chr(_).upper() for _ in range(ord('а'), ord('я'))] +
+                         [chr(_) for _ in range(ord('\u0627'), ord('\u064a'))])
+def test_correct_input_pagecheck(client, input_password):
 
     response = client.post('/check_password', data={'input_password': input_password})
+
+    assert response.status_code == 200
+
+
+@pytest.mark.parametrize('input_password',
+                         [chr(_).upper() for _ in range(ord('\u3041'), ord('\u3096'))] +
+                         [chr(_).upper() for _ in range(ord('\u30A1'), ord('\u30FB'))])
+def test_validation_error_input_pagecheck(client, input_password):
+
+    response = client.post('/check_password', data={'input_password': input_password})
+    soup = BeautifulSoup(response.data, 'lxml')
+    title = soup.find('p', attrs={'class': 'invalid_messages'})
+
+    assert str(title) == '<p class="invalid_messages">Пароль содержит не известные символы</p>'
 
     assert response.status_code == 200
 
