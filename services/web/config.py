@@ -4,8 +4,7 @@ app_dir = os.path.abspath(os.path.dirname(__file__))
 
 
 class BaseConfig:
-    #SECRET_KEY = os.environ.get('SECRET_KEY') or 'A SECRET KEY'
-    SECRET_KEY = 'djkflsgbnkjdgn'
+    SECRET_KEY = os.environ.get('SECRET_KEY')
 
 
 class DevelopmentConfig(BaseConfig):
