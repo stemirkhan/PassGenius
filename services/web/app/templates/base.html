@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% block head%}
+    <link type="text/css" href="{{url_for('static', filename='css/base.css')}}" rel="stylesheet" />
+    <meta charset="UTF-8">
+    <title>PassGenius - {{title}}</title>
+    {% endblock %}
+</head>
+
+<body>
+<div class="wraper">
+        <header class="header">
+            <div class="header_logo">
+                <a href="/" class="header_logo_link">PassGenius</a>
+            </div>
+
+            <nav class="header_nav">
+                <ul class="header_list">
+                    <li class="header_item">
+                        <a href="{{url_for('generate_password')}}" class="header_link">Сгенерировать </a>
+                    </li>
+                    <li class="header_item">
+                        <a href="{{url_for('check_password')}}" class="header_link">Проверить надежность</a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+
+        <main class="main">
+            {% block contect %}
+            {% endblock %}
+        </main>
+
+        <footer>
+            <div class="div_footer"><img src="{{url_for('static', filename='/img/svg/footer_icon.svg')}}" alt=""></div>
+        </footer>
+    </div>
+</body>
+</html>

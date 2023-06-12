@@ -1,0 +1,35 @@
+main{
+     position: absolute;
+     width: 1280px;
+     font-family: 'Raleway';
+     font-style: normal;
+     font-weight: 500;
+     font-size: 20px;
+     line-height: 30px;
+     color: rgba(0, 0, 0, 0.6);
+
+}
+
+.message_error{
+  position: absolute;
+  width: 700px;
+  height: 300px;
+  left: 290px;
+  top: 300px;
+}
+
+.error_code{
+font-family: 'Red Hat Display';
+  font-style: normal;
+  text-align: center;
+  font-weight: 700;
+  font-size: 135px;
+  line-height: 40px;
+  color: #04145C;
+  text-decoration: none;
+    margin-bottom: 50px;
+}
+
+.text_error {
+  text-align: center;
+}
